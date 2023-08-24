@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  productsmicroservice:
+    image: ${DOCKER_REGISTRY-}productsmicroservice
+    build:
+      context: ../ProductsMicroservice
+      dockerfile: Dockerfile
+    
+    
+  ordersmicroservice:
+    image: ${DOCKER_REGISTRY-}ordersmicroservice
+    build:
+      context: ../OrdersMicroservice
+      dockerfile: Dockerfile
+    depends_on:
+      - productsmicroservice
+  apigatewaymicroservice:
+    image: ${DOCKER_REGISTRY-}apigatewaymicroservice
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - productsmicroservice
+      - ordersmicroservice
+    
+
+  
+  
+       

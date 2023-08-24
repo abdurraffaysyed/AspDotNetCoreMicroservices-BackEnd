@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  productsmicroservice:
+    container_name: product
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=44302
+   
+    ports:
+      - 8085:80
+      - 44302:443
+  ordersmicroservice:
+    container_name: order
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;HTTP://+:80
+      - ASPNETCORE_HTTPS_PORT=44303
+    ports:
+      - 8086:80
+      - 44303:443
+  apigatewaymicroservice:
+    container_name: api-gateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=44301
+    ports:
+      - 10000:80
+      - 44301:443
+    
+    
+
+  
+  
+       
